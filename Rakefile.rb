@@ -2,18 +2,11 @@
 # 9. April 2007
 #
 
-begin
-  require 'rubygems'
-  require 'rake'
-  require 'rake/testtask'
-  require 'rake/rdoctask'
-  require 'rake/gempackagetask'
-rescue LoadError
-  require 'rake'
-  require 'rake/testtask'
-  require 'rake/rdoctask'
-  require 'rake/gempackagetask'
-end
+require 'rubygems'
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'rake/gempackagetask'
 
 Gem::manage_gems
 
