@@ -16,14 +16,6 @@ require "test/unit"
 
 class TestClothRedFormatting <  Test::Unit::TestCase
   
-  FORMATTING_HTML = [
-    ["<b>", "**"], ["</b>","**"], ["<em>","_"], ["</em>", "_"], ["<b>", "*"], 
-    ["</b>", "*"], ["<cite>", "??"], ["</cite>", "??"], ["<code>", "@"], 
-    ["</code>", "@"], ["<del>", "-"], ["</del>", "-"], ["<ins>", "+"], 
-    ["</ins>", "+"], ["<sup>","^"], ["</sup>","^"], ["<sub>","~"], ["</sub>","~"], 
-    ["<strong>", "*"], ["</strong>", "*"], ["<i>","__"], ["</i>", "__"] 
-  ]
-
   FORMATTING_STRINGS = [
     ["<b>bold</b>","**bold**"], ["<strong>strong</strong>", "*strong*"], 
     ["<em>emphasized</em>", "_emphasized_"],["<i>italics</i>", "__italics__"], 
@@ -35,8 +27,10 @@ class TestClothRedFormatting <  Test::Unit::TestCase
   
   def test_textformatting
     FORMATTING_STRINGS.each do |html, textile|
-      tex = ClothRed.to_textile(html)
-      assert_equal(textile,tex)
+      test_html = ClothRed.new(html)
+      result = test_html.to_textile
+      assert_equal(textile,result.to_s)
     end
   end
+
 end
