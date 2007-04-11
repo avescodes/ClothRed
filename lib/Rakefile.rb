@@ -22,8 +22,8 @@ spec = Gem::Specification.new do |s|
   s.email = "cmdjackryan@gmail.com"
   s.platform = Gem::Platform::RUBY
   s.summary = "RedCloth in reverse: Converting HTML into Textile markup"
-  s.files = FileList["{lib,test,doc}/**/*"].exclude("nbproject",".svn").to_a
-  s.require_path = "lib"
+  s.files = FileList["{../lib,../test}/**/*"].exclude("nbproject",".svn").to_a
+  s.rdoc_options << '--title' << 'ClothRed' << '--main' << '../README.rdoc'
   s.autorequire = "clothred"
   s.has_rdoc = true
 end
