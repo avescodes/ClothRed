@@ -22,10 +22,11 @@ spec = Gem::Specification.new do |s|
   s.email = "cmdjackryan@gmail.com"
   s.platform = Gem::Platform::RUBY
   s.summary = "RedCloth in reverse: Converting HTML into Textile markup"
-  s.files = FileList["{../lib,../test}/**/*"].exclude("nbproject",".svn").to_a
-  s.rdoc_options << '--title' << 'ClothRed' << '--main' << '../README.rdoc'
+  s.files = FileList["{lib,test,doc}/**/*"].exclude("nbproject",".svn").to_a
+  s.rdoc_options << '--title' << 'ClothRed documentation' << '--main' << 'README.rdoc'
   s.autorequire = "clothred"
-  s.has_rdoc = true
+  s.has_rdoc = false #Should be true, have to juggle with the directories first, though
+  s.rubyforge_project ="clothred"
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
@@ -41,8 +42,8 @@ end
 
 Rake::RDocTask.new do |rd|
   rd.title = "ClothRead documentation"
-  rd.rdoc_files.exclude("../Rakefile.rb")
-  rd.rdoc_files.include("../*.rdoc", "../lib/clothred.rb")
-  rd.rdoc_dir = "../doc/html"
-  rd.main = "../README.rdoc"
+  rd.rdoc_files.exclude("Rakefile.rb")
+  rd.rdoc_files.include("LICENSE.rdoc", "lib/clothred.rb", "README.rdoc")
+  rd.rdoc_dir = "/doc/html"
+  rd.main = "README.rdoc"
 end
