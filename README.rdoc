@@ -2,7 +2,7 @@
 
 == What it is
 
-A script to convert HTML into Textile markup for use, for example, with 
+A library to convert HTML into Textile markup for use, for example, with 
 RedCloth.
 
 
@@ -22,8 +22,8 @@ Or get the source:
 svn checkout svn://viewvc.rubyforge.mmmultiworks.com/var/svn/clothred
 
 == New in this release:
-  * Support for headings
-  * Support for paragraphs and <blockquote>
+  * Support for some HTML entities
+  * Support for tables
 
 == Features
 
@@ -33,6 +33,7 @@ implemented yet:
  * text formatting (<sub>, <sup>, <ins>,<del>)
  * Support for headings
  * Support for paragraphs and <blockquote>
+ * Support for Textile entities
 
 == Usage
 

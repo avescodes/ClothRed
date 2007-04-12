@@ -7,9 +7,6 @@ TODO: enhance docs, as more methods come availlable
 Author:: Phillip "CynicalRyan" Gawlowski (mailto:cmdjackryan@gmail.com)
 Copyright:: Copyright (c) 2007 Phillip Gawlowski
 License:: BSD
-
-
-
 =end
 
 
@@ -26,31 +23,45 @@ class ClothRed < String
   ]
   
   HEADINGS = [
-    ["<h1>","h1. "], ["</h1>", ""], ["<h2>","h2. "],["</h2>", ""], 
-    ["<h3>","h3. "], ["</h3>", ""], ["<h4>","h4. "],["</h4>", ""], 
-    ["<h5>","h5. "], ["</h5>", ""], ["<h6>","h6. "],["</h6>", ""]
+    ["<h1>","h1. "], ["</h1>", ""], ["<h2>","h2. "], ["</h2>", ""], 
+    ["<h3>","h3. "], ["</h3>", ""], ["<h4>","h4. "], ["</h4>", ""], 
+    ["<h5>","h5. "], ["</h5>", ""], ["<h6>","h6. "], ["</h6>", ""], 
+    ["<h7>","h7. "], ["</h7>", ""]
   ]
   
   STRUCTURES = [
     ["<p>", ""],["</p>","\n\n"], ["<blockquote>", "bq. "], ["</blockquote>",""]
   ]
   
+  ENTITIES = [
+    ["&#8220;", '"'], ["&#8221;", '"'], ["&#8212;", "--"], ["&#8212;", "--"], 
+    ["&#8211;","-"], ["&#8230;", "..."], ["&#215;", " x "], ["&#8482;","(tm)"], 
+    ["&#174;","(R)"], ["&#169;","(C)"], ["&#8217;", "'"]
+  ]
+  
+  TABLES = [
+    ["<table>",""], ["</table>",""], ["<tr>",""], ["</tr>","|\n"], ["<td>","|"], 
+    ["</td>",""], ["<th>", "|_."], ["</th>", ""]
+  ]
+  
   def initialize (html)
     super(html)
-    @workingcopy = html.dup
+    @workingcopy = html
   end
 #++  
   #Call all necessary methods to convert a string of HTML into Textile markup.
   
   def to_textile
-   
-  headings(@workingcopy)
-  structure(@workingcopy)
-  text_formatting(@workingcopy)
+  
 
-  @workingcopy
+    headings(@workingcopy)
+    structure(@workingcopy)
+    text_formatting(@workingcopy)
+    entities(@workingcopy)
+    tables(@workingcopy)
+    @workingcopy
 
-end
+  end
   
 #--
   #The conversion methods themselves are private.
@@ -72,6 +83,14 @@ end
   end
   
   
+  def entities(text)
+    ENTITIES.each do |htmlentity, textileentity|
+      text.gsub!(htmlentity, textileentity)
+    end
+    text
+  end
+  
+  
   def structure(text)
     STRUCTURES.each do |htmltag, textiletag|
       text.gsub!(htmltag, textiletag)
@@ -80,7 +99,9 @@ end
   end
   
   def tables(text)
-    #TODO: Translate Tables
+    TABLES.each do |htmltag, textiletag|
+      text.gsub!(htmltag, textiletag)
+    end
     text
   end
   
