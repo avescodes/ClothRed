@@ -24,12 +24,12 @@ class TestClothRedFormatting <  Test::Unit::TestCase
     ["<del>delete</del>", "-delete-"], ["<ins>underline</ins>", "+underline+"], 
     ["<sup>superscript</sup>","^superscript^"], ["<sub>subscript</sub>","~subscript~"] 
   ]
-  
+ 
   def test_textformatting
     FORMATTING_STRINGS.each do |html, textile|
       test_html = ClothRed.new(html)
       result = test_html.to_textile
-      assert_equal(textile,result.to_s)
+      assert_equal(textile,result)
     end
   end
 
