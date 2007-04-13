@@ -48,3 +48,6 @@ Feel free to contact me, or peruse the homepage.
 
  * http://clothred.rubyforge.org/
  * http://rubyforge.org/projects/clothred/
+ 
+== Contributers:
+Adriano Ferreira (patch + test for heading-translation)
