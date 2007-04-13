@@ -17,7 +17,8 @@ class TestClothRedStructures < Test::Unit::TestCase
  
   STRUCTURE_TEST = [
   ["<blockquote>blockquote</blockquote>","bq. blockquote"],
-  ["<p>paragraph</p><p>another paragraph</p>", "paragraph\n\nanother paragraph\n\n"]
+  ["<p>paragraph</p><p>another paragraph</p>", "paragraph\n\nanother paragraph\n\n"], 
+  ["HTML page break<br>", "HTML page break\n"], ["XHTML page break<br />", "XHTML page break\n"]
   ]
   
   

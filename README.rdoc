@@ -21,9 +21,10 @@ http://rubyforge.org/frs/?group_id=3427
 Or get the source:
 svn checkout svn://viewvc.rubyforge.mmmultiworks.com/var/svn/clothred
 
-== New in this release:
-  * Support for some HTML entities
-  * Support for tables
+== Bugs fixed in this release:
+ * HTML linebreak wasn't translated
+ * Headings weren't translated properly (thanks to Adriano Ferreira for providing a fix and a new test)
+
 
 == Features
 
