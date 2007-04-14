@@ -1,5 +1,6 @@
 =begin rdoc
 Provides the methods to convert HTML into Textile.
+*Please* *note*: ClothRed creates UTF-8 output. To do so, it sets $KCODE to UTF-8. This will be globally available!
 #--
 TODO: enhance docs, as more methods come availlable
 #++
@@ -9,7 +10,8 @@ Copyright:: Copyright (c) 2007 Phillip Gawlowski
 License:: BSD
 =end
 
-
+require 'cgi'
+$KCODE = "U"
 
 
 class ClothRed < String
@@ -54,14 +56,15 @@ class ClothRed < String
   
   def to_textile
   
-
+    
     headings(@workingcopy)
     structure(@workingcopy)
     text_formatting(@workingcopy)
     entities(@workingcopy)
     tables(@workingcopy)
+    @workingcopy = CGI::unescapeHTML(@workingcopy)
     @workingcopy
-
+    
   end
   
 #--

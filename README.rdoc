@@ -21,9 +21,8 @@ http://rubyforge.org/frs/?group_id=3427
 Or get the source:
 svn checkout svn://viewvc.rubyforge.mmmultiworks.com/var/svn/clothred
 
-== Bugs fixed in this release:
- * HTML linebreak wasn't translated
- * Headings weren't translated properly (thanks to Adriano Ferreira for providing a fix and a new test)
+== New Features
+ * HTML is being escaped into UTF-8 via Ruby's CGI Library. This is the very last step in the process.
 
 
 == Features
@@ -44,10 +43,12 @@ text = ClothRed.new("<b>Bold</b> <em>HTML</em>!")
 text.to_textile
 
 == Get Help
+
 Feel free to contact me, or peruse the homepage.
 
  * http://clothred.rubyforge.org/
  * http://rubyforge.org/projects/clothred/
  
 == Contributers:
+
 Adriano Ferreira (patch + test for heading-translation)
