@@ -8,24 +8,40 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 
+begin
+  gem 'ci_reporter'
+rescue LoadError => e
+  puts "#{e}: Continuing without XML output"
+end
+
+unless e
+  require 'ci/reporter/rake/test_unit'
+end
+
+
 #List of tasks available
-task :gem => ["pkg", "test", "rdoc"]
-task :test
+
+task :gem => ["pkg", "test"]
+
+if e
+  task :test
+else
+  task :test => ["ci:setup:testunit"]
+end
 
 
 Gem::manage_gems
 
 spec = Gem::Specification.new do |s|
   s.name = "ClothRed"
-  s.version = "0.4.0"
+  s.version = "0.4.1"
   s.author = 'Phillip "CynicalRyan" Gawlowski'
   s.email = "cmdjackryan@gmail.com"
   s.platform = Gem::Platform::RUBY
   s.summary = "RedCloth in reverse: Converting HTML into Textile markup"
-  s.files = FileList["{lib,test,doc}/**/*"].exclude("nbproject",".svn").to_a
-  s.rdoc_options << '--title' << 'ClothRed documentation' << '--main' << 'README.rdoc'
+  s.files = FileList["{lib,test}/**/*"].exclude("nbproject",".svn").to_a
   s.autorequire = "clothred"
-  s.has_rdoc = false #Should be true, have to juggle with the directories first, though
+  s.has_rdoc = true
   s.rubyforge_project ="clothred"
 end
 
@@ -44,6 +60,6 @@ Rake::RDocTask.new do |rd|
   rd.title = "ClothRead documentation"
   rd.rdoc_files.exclude("Rakefile.rb")
   rd.rdoc_files.include("LICENSE.rdoc", "lib/clothred.rb", "README.rdoc")
-  rd.rdoc_dir = "/doc/html"
+  rd.rdoc_dir = "doc/html"
   rd.main = "README.rdoc"
 end
