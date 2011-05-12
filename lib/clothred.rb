@@ -11,7 +11,7 @@ License:: BSD
 =end
 
 require 'cgi'
-$KCODE = "U"
+$KCODE = "U" unless RUBY_VERSION > "1.9.0"
 
 
 class ClothRed < String

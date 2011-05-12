@@ -34,7 +34,7 @@ Gem::manage_gems
 
 spec = Gem::Specification.new do |s|
   s.name = "ClothRed"
-  s.version = "0.4.1"
+  s.version = "0.4.2"
   s.author = 'Phillip "CynicalRyan" Gawlowski'
   s.email = "cmdjackryan@gmail.com"
   s.platform = Gem::Platform::RUBY
